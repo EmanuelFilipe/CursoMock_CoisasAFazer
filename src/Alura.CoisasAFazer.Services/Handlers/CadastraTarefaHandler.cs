@@ -17,7 +17,7 @@ namespace Alura.CoisasAFazer.Services.Handlers
             _logger = new LoggerFactory().CreateLogger<CadastraTarefaHandler>();
         }
 
-        public void Execute(CadastraTarefa comando)
+        public CommandResult Execute(CadastraTarefa comando)
         {
             var tarefa = new Tarefa
             (
@@ -30,6 +30,8 @@ namespace Alura.CoisasAFazer.Services.Handlers
             );
             _logger.LogDebug("Persistindo a tarefa...");
             _repo.IncluirTarefas(tarefa);
+
+            return new CommandResult(true);
         }
     }
 }
